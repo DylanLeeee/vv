@@ -8,11 +8,8 @@
             <el-header>
                 <TopHeader></TopHeader>
             </el-header>
-            <el-main>
-                <div style="width:50%">
-                    <Content></Content>
-                    <AddProductions></AddProductions>
-                </div>
+            <el-main >
+                <router-view ></router-view>
             </el-main>
         </el-container>
     </el-container>
@@ -20,10 +17,9 @@
 </template>
 <script>
 
-import LeftNavigator from '@/components/leftNavigator.vue';
-import TopHeader from '@/components/topHeader.vue';
-import Content from '@/components/goodsContent.vue';
-import AddProductions from '@/components/addProductions.vue'
+import LeftNavigator from '@/components/common/leftNavigator.vue';
+import TopHeader from '@/components/common/topHeader.vue';
+
 
 export default {
     name:'Index',
@@ -35,8 +31,7 @@ export default {
     components:{
         LeftNavigator,
         TopHeader,
-        Content,
-        AddProductions        
+     
     }
 }
 </script>

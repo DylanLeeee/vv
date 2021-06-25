@@ -1,26 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Content from '../components/goodsContent.vue'
-import AddProductions from '../components/addProductions.vue'
+
+// 商品类
+import FurnitureCatagory from '@/components/productions/furnitureCatagory.vue'  
+import ElectricsCatagory from '@/components/productions/electricsCatagory.vue'
+
+//商品编辑
+import AddProductions from '@/components/admin/addProductions.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/getFurniture',
-    name: 'getFurniture',
-    component: Content
+    path: '/getFurnitures',
+    name: 'getFurnitures',
+    component: FurnitureCatagory
   },
   {
-    path: '/getElectric',
-    name: 'getElectric',
-    component: Content
+    path: '/getElectrics',
+    name: 'getElectrics',
+    component: ElectricsCatagory
   },
   {
     path: '/addProductions',
     name: 'addProductions',
-    component: AddProductions
-  }
+    component:AddProductions
+  } 
 ]
 
 const router = new VueRouter({

@@ -1,18 +1,15 @@
 <template>
-  <div id="app">
-    <Home></Home>
-
-  </div>
+<Index></Index>
 </template>
 
 <script>
-import Home from '@/views/index.vue'
+import Index from './views/index.vue';
 
-export default ({
+export default{
     components:{
-        Home     
+        Index
     }
-})
+}
 </script>
 
 <style>
