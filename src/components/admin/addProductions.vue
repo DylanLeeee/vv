@@ -64,14 +64,17 @@
     </div>
     <div>
       <el-dialog title="新增商品" :visible.sync="dialogFormVisible" style="width:1100px">
-        <el-form :model="form">
+        <el-form :model="form" >
           <el-form-item label="商品ID" :label-width="formLabelWidth">
             <el-input v-model="form.skuid" placeholder="请输入京东商品ID" style="width:300px"></el-input>
+          </el-form-item>
+          <el-form-item label="价格" :label-width="formLabelWidth">
+            <el-input v-model="form.bestPrice" placeholder="卖价" style="width:300px" ></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="dialogFormVisible = false"
+          <el-button type="primary" @click="addProduct"
             >确 定</el-button
           >
         </div>
@@ -104,7 +107,8 @@ export default {
         },
       ],
       form: {
-        skuid:''
+        skuid:'',
+        bestPrice:''
       },
       dialogFormVisible: false,
       formLabelWidth: "120px",
@@ -123,19 +127,17 @@ export default {
     handleClick(row) {
       console.log(row.name);
     },
-  },
-  watch:{
-      'form.skuid':function(){
-          //此处通过skuid传参调取api，去抓取京东商品信息
-          let product_info = axios.get('http://127.0.0.1:8000/get_product_info',{params:{'skuid':this.form.skuid}}).then(res=>{
-              return res.data.data
-          });
-          product_info.then(res=>{
-                console.log(res[0].goodsName);  //获得state里的数据，把数据赋值给data里的变量
-            })
-      }
+    addProduct(){
+      this.dialogFormVisible=false;
+      //此处通过skuid传参调取api，去抓取京东商品信息
+      let product_info = axios.post('http://127.0.0.1:5000/get_product_info',{'skuid':this.form.skuid,'bestPrice':this.form.bestPrice}).then(res=>{
+          return res.data.data
+      });
+      product_info.then(res=>{
+            console.log(res[0].goodsName);  //获得state里的数据，把数据赋值给data里的变量
+        })
+    }
   }
-
 };
 </script>
 .content {
