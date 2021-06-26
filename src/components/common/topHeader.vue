@@ -14,12 +14,11 @@ export default {
 
 <style>
 .banner{
-    margin-left:250px;
-    height:80px;
     background-color:#d3dce6;
+    margin: 0px;
+    padding: 1px;
 }
 .banner-content{
     text-align: center;
-    padding-top:10px;
 }
 </style>

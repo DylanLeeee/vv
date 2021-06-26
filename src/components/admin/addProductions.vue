@@ -1,19 +1,20 @@
 <template >
-  <el-container class="content">
+  <div >
     <el-container>
-      <el-header style="height: 50px">
-        <div style="float: right; margin-right: 40%">
+      <el-header style="display:inline-block;margin-top:0px">
+        <div style="float:right">
           <el-button type="primary" round @click="dialogFormVisible = true"
             >新增</el-button
           >
         </div>
-        <div style="width: 300px; float: right; margin-right: 50px">
+        <div style="width: 300px;float:right">
           <el-input placeholder="请输入内容" v-model="search">
             <el-button slot="append" icon="el-icon-search"></el-button>
           </el-input>
+          <div style="clear:both"></div>
         </div>
       </el-header>
-      <el-main>
+      <el-main style="padding:5px">
         <el-table
           :data="
             tableData.slice(
@@ -61,7 +62,7 @@
             :page-size="pageSize"
             layout="prev, pager, next"
             :total="tableData.length"
-            style="float: right; margin-top: 15px"
+            style="float: right; "
           >
           </el-pagination>
         </div>
@@ -85,7 +86,7 @@
         </div>
       </el-dialog>
     </div>
-  </el-container>
+  </div>
 </template>
 
 <script>
@@ -142,8 +143,7 @@ export default {
   }
 };
 </script>
-.content {
-  margin-left: 250px;
-}
+
 <style>
+
 </style>

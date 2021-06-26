@@ -1,5 +1,5 @@
 <template>
-  <div class='content'>
+  <div >
       家居
   </div>
 </template>
@@ -11,7 +11,5 @@ export default {
 </script>
 
 <style>
-.content {
-  margin-left: 250px;
-}
+
 </style>
