@@ -1,20 +1,22 @@
 <template >
-  <div >
+  <div>
     <el-container>
-      <el-header style="display:inline-block;margin-top:0px">
-        <div style="float:right">
-          <el-button type="primary" round @click="dialogFormVisible = true"
-            >新增</el-button
-          >
-        </div>
-        <div style="width: 300px;float:right">
-          <el-input placeholder="请输入内容" v-model="search">
-            <el-button slot="append" icon="el-icon-search"></el-button>
-          </el-input>
-          <div style="clear:both"></div>
-        </div>
+      <el-header style="display: inline-block; margin-top: 0px ;">
+        <el-row type="flex" justify="end">
+          <el-col :span="2">
+            <el-button type="primary" round @click="dialogFormVisible = true"
+              >新增</el-button
+            >
+          </el-col>
+          <el-col :span="4">
+            <el-input placeholder="请输入内容" v-model="search">
+              <el-button slot="append" icon="el-icon-search"></el-button>
+            </el-input>
+            <div style="clear: both"></div>
+          </el-col>
+        </el-row>
       </el-header>
-      <el-main style="padding:5px">
+      <el-main style="padding: 5px">
         <el-table
           :data="
             tableData.slice(
@@ -22,17 +24,18 @@
               currentPage * pageSize
             )
           "
-          style="width: 100%; "
-
+          style="width: 100%"
         >
-          <el-table-column prop="imgUrl" label="图片链接" width="100px"> 
+          <el-table-column prop="imgUrl" label="图片链接" width="100px">
             <template slot-scope="scope">
-            <img :src="scope.row.imgUrl" style="height: 100px"/>
+              <img :src="scope.row.imgUrl" style="height: 100px" />
             </template>
           </el-table-column>
-          <el-table-column  label="商品名" min-width="150px"> 
+          <el-table-column label="商品名" min-width="150px">
             <template slot-scope="scope">
-                <a :href="scope.row.materialUrl" target="_blank" >{{scope.row.name}}</a>
+              <a :href="scope.row.materialUrl" target="_blank">{{
+                scope.row.name
+              }}</a>
             </template>
           </el-table-column>
           <el-table-column prop="unitPrice" label="单价"> </el-table-column>
@@ -62,27 +65,39 @@
             :page-size="pageSize"
             layout="prev, pager, next"
             :total="tableData.length"
-            style="float: right; "
+            style="float: right"
           >
           </el-pagination>
         </div>
       </el-main>
     </el-container>
     <div>
-      <el-dialog title="新增商品" :visible.sync="dialogFormVisible" style="width:1100px">
-        <el-form :model="form" >
+      <el-dialog
+        title="新增商品"
+        :visible.sync="dialogFormVisible"
+        style="width: 1100px"
+      >
+        <el-form :model="form">
           <el-form-item label="商品ID" :label-width="formLabelWidth">
-            <el-input v-model="form.skuid" placeholder="请输入京东商品ID" style="width:300px" required></el-input>
+            <el-input
+              v-model="form.skuid"
+              placeholder="请输入京东商品ID"
+              style="width: 300px"
+              required
+            ></el-input>
           </el-form-item>
           <el-form-item label="价格" :label-width="formLabelWidth">
-            <el-input v-model="form.bestPrice" placeholder="卖价" style="width:300px" required></el-input>
+            <el-input
+              v-model="form.bestPrice"
+              placeholder="卖价"
+              style="width: 300px"
+              required
+            ></el-input>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="addProduct"
-            >确 定</el-button
-          >
+          <el-button type="primary" @click="addProduct">确 定</el-button>
         </div>
       </el-dialog>
     </div>
@@ -90,7 +105,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
   name: "AddProductions",
   data() {
@@ -99,8 +114,8 @@ export default {
       currentPage: 1, // 当前页
       tableData: [],
       form: {
-        skuid:'',
-        bestPrice:''
+        skuid: "",
+        bestPrice: "",
       },
       dialogFormVisible: false,
       formLabelWidth: "120px",
@@ -119,31 +134,37 @@ export default {
     handleClick(row) {
       console.log(row.name);
     },
-    addProduct(){
-      this.dialogFormVisible=false;
+    addProduct() {
+      this.dialogFormVisible = false;
       //此处通过skuid传参调取api，去抓取京东商品信息
-      let product_info = axios.post('http://127.0.0.1:5000/get_product_info',{'skuid':this.form.skuid,'bestPrice':this.form.bestPrice}).then(res=>{
-          return res.data
-      }).catch(error=>{
-            this.$message(error.data)
+      let product_info = axios
+        .post("http://localhost:5000/get_product_info", {
+          skuid: this.form.skuid,
+          bestPrice: this.form.bestPrice,
+        })
+        .then((res) => {
+          return res.data;
+        })
+        .catch((error) => {
+          this.$message(error.data);
+        });
+      product_info.then((data) => {
+        this.$message(data.msg);
       });
-    product_info.then(data=>{
-        this.$message(data.msg)
-    })
-    }
+    },
   },
-  mounted:function(){
-      let tableDataP= axios.post('http://127.0.0.1:5000/get_goods_list',{'goodsName':''}).then(res=>{
-          return res.data.data
-      })
-      tableDataP.then(res=>{
-          this.tableData=res
-      })
-
-  }
+  mounted: function () {
+    let tableDataP = axios
+      .post("http://localhost:5000/get_goods_list", { goodsName: "" })
+      .then((res) => {
+        return res.data.data;
+      });
+    tableDataP.then((res) => {
+      this.tableData = res;
+    });
+  },
 };
 </script>
 
 <style>
-
 </style>

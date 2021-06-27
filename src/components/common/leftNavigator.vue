@@ -1,6 +1,6 @@
 <template>
 <div style="height:100vh;">
-  <el-col :xs="4" :sm="8" :md="10" :lg="16" :xl="18" style="height:100vh;">
+  <el-col style="height:100vh;">
     <el-menu
       default-active="1"
       class="el-menu-vertical-demo"
@@ -10,8 +10,7 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       style="height:100%"
-      collapse-transition="true"
-      collapse='false'
+      collapse-transition="false"
       >
       <el-submenu index="1">
         <template slot="title">
