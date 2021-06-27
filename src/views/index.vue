@@ -1,20 +1,20 @@
 <template>
-<div>
-    <el-container >
-        <el-aside >
-            <LeftNavigator></LeftNavigator>
-        </el-aside>
-        <el-container >
-            <el-header id="main">
+<el-container>
+    <el-aside>
+        <LeftNavigator></LeftNavigator>
+    </el-aside>
+    <el-main style="height:100vh">
+        <el-container direction="vertical">
+            <el-header>
                 <TopHeader></TopHeader>
             </el-header>
-            <el-divider ></el-divider>
-            <el-main style="height:100%;flex-grow:1;padding:0px">
+            <el-main >
+                <el-divider ></el-divider>
                 <router-view ></router-view>
             </el-main>
         </el-container>
-    </el-container>
-</div>
+    </el-main>
+</el-container>
 </template>
 <script>
 
@@ -35,16 +35,9 @@ export default {
 <style scoped>
 .el-aside {
   width: auto !important;
+  position: relative;
+  top:0px;
 }
 
-body,.el-container{
-    /*设置内部填充为0，几个布局元素之间没有间距*/
-    padding: 0px;
-        /*外部间距也是如此设置*/
-    margin: 0px;
-    /*统一设置高度为100%*/
-
-    overflow: hidden ;
-}
 
 </style>

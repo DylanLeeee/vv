@@ -1,5 +1,5 @@
 <template>
-<div style="height:100vh;">
+<el-row>
   <el-col style="height:100vh;">
     <el-menu
       default-active="1"
@@ -47,7 +47,7 @@
       </el-submenu>
     </el-menu>
   </el-col>
-</div>
+</el-row>
 </template>
 
 <script>

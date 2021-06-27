@@ -16,7 +16,7 @@
           </el-col>
         </el-row>
       </el-header>
-      <el-main style="padding: 5px">
+      <el-main >
         <el-table
           :data="
             tableData.slice(
