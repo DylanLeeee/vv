@@ -10,7 +10,6 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       style="height:100%"
-      collapse-transition="false"
       >
       <el-submenu index="1">
         <template slot="title">

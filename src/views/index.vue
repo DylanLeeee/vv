@@ -1,19 +1,16 @@
 <template>
-<el-container>
-    <el-aside>
+<el-container >
+    <el-aside >
         <LeftNavigator></LeftNavigator>
     </el-aside>
-    <el-main style="height:100vh">
-        <el-container direction="vertical">
-            <el-header>
-                <TopHeader></TopHeader>
-            </el-header>
-            <el-main >
-                <el-divider ></el-divider>
-                <router-view ></router-view>
-            </el-main>
-        </el-container>
-    </el-main>
+    <el-container style="height:100vh">
+        <el-header>
+            <TopHeader></TopHeader>
+        </el-header>
+        <el-main style="background-color: #E9EEF3; ">
+            <router-view ></router-view>
+        </el-main>
+    </el-container>
 </el-container>
 </template>
 <script>
@@ -35,8 +32,7 @@ export default {
 <style scoped>
 .el-aside {
   width: auto !important;
-  position: relative;
-  top:0px;
+
 }
 
 

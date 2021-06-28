@@ -4,6 +4,8 @@
 
 <script>
 import Index from './views/index.vue';
+import './style/index.css'
+import './config.js'
 
 export default{
     components:{
